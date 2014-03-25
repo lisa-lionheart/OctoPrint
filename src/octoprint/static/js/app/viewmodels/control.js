@@ -185,6 +185,20 @@ function ControlViewModel(loginStateViewModel, settingsViewModel) {
             data: JSON.stringify(data)
         });
     };
+	
+    self.sendEjectCommand = function() {
+        var data = {
+            "command": "eject"
+        }
+
+        $.ajax({
+            url: API_BASEURL + "printer/tool",
+            type: "POST",
+            dataType: "json",
+            contentType: "application/json; charset=UTF-8",
+            data: JSON.stringify(data)
+        });
+    }
 
     self.sendCustomCommand = function(command) {
         if (!command)

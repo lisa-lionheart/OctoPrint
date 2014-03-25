@@ -36,7 +36,8 @@ def printerToolCommand():
 		"select": ["tool"],
 		"target": ["targets"],
 		"offset": ["offsets"],
-		"extrude": ["amount"]
+		"extrude": ["amount"],
+		"eject":[]
 	}
 	command, data, response = util.getJsonCommandFromRequest(request, valid_commands)
 	if response is not None:
@@ -99,6 +100,18 @@ def printerToolCommand():
 		if not isinstance(amount, (int, long, float)):
 			return make_response("Not a number for extrusion amount: %r" % amount, 400)
 		printer.extrude(amount)
+		
+	##~~ ejection
+	elif command == "eject":
+		
+		if not settings().get(["eject","enabled"]):
+			return make_response("Your printer is not configured with ejection support", 409)
+		
+		if printer.isPrinting():
+			# do not allow ejection when printing
+			return make_response("Printer is currently printing", 409)
+		
+		printer.eject()
 
 	return NO_CONTENT
 
@@ -293,7 +306,6 @@ def printerCommand():
 
 	return NO_CONTENT
 
-
 @api.route("/printer/command/custom", methods=["GET"])
 def getCustomControls():
 	# TODO: document me
@@ -326,3 +338,4 @@ def _getTemperatureData(filter):
 
 	return result
 
+	

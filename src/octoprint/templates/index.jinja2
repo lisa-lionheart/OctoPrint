@@ -387,6 +387,10 @@
                                     <button class="btn btn-block control-box" data-bind="enable: isOperational() && !isPrinting() && loginState.isUser(), click: function() { $root.sendCustomCommand({type:'command',command:'M18'}) }">Motors off</button>
                                     <button class="btn btn-block control-box" data-bind="enable: isOperational() && loginState.isUser(), click: function() { $root.sendCustomCommand({type:'command',command:'M106'}) }">Fans on</button>
                                     <button class="btn btn-block control-box" data-bind="enable: isOperational() && loginState.isUser(), click: function() { $root.sendCustomCommand({type:'command',command:'M106 S0'}) }">Fans off</button>
+									
+									{% if enableEjectCommand %}
+									<button class="btn btn-block control-box" data-bind="enable: isOperational() && !isPrinting() && loginState.isUser(), click: function(){ $root.sendEjectCommand() }">Eject</button>
+									{% endif %}
                                 </div>
                             </div>
 

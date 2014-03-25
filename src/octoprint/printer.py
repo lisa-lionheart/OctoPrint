@@ -314,6 +314,15 @@ class Printer():
 			if self._selectedFile["sd"]:
 				payload["origin"] = FileDestinations.SDCARD
 			eventManager().fire(Events.PRINT_FAILED, payload)
+			
+			
+	def eject(self):
+		"""
+		 Execute GCode required to remove finished print from the bed
+		"""
+		gcode = settings().get(["eject","ejectGCode"])
+		
+		self.commands(gcode.split('\n'))
 
 	#~~ state monitoring
 

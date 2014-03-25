@@ -90,6 +90,13 @@ def getSettings():
 			"events": s.get(["system", "events"])
 		},
 		"terminalFilters": s.get(["terminalFilters"]),
+		
+		"eject": {
+			"enabled":s.get(["eject","enabled"]),
+			"maxBedTemp":s.get(["eject","maxBedTemp"]),
+			"ejectGCode":s.get(["eject","ejectGCode"]),		  
+		},
+		
 		"cura": {
 			"enabled": s.getBoolean(["cura", "enabled"]),
 			"path": s.get(["cura", "path"]),
@@ -175,6 +182,11 @@ def setSettings():
 
 		if "terminalFilters" in data.keys():
 			s.set(["terminalFilters"], data["terminalFilters"])
+			
+		if "eject" in data.keys():
+			if "enabled" in data["eject"].keys(): s.set(["eject","enabled"], data["eject"]["enabled"])
+			if "maxBedTemp" in data["eject"].keys(): s.set(["eject","maxBedTemp"], data["eject"]["maxBedTemp"])
+			if "ejectGCode" in data["eject"].keys(): s.set(["eject","ejectGCode"], data["eject"]["ejectGCode"])
 
 		if "system" in data.keys():
 			if "actions" in data["system"].keys(): s.set(["system", "actions"], data["system"]["actions"])

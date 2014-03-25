@@ -140,6 +140,11 @@ default_settings = {
 		{ "name": "Suppress M105 requests/responses", "regex": "(Send: M105)|(Recv: ok T\d*:)" },
 		{ "name": "Suppress M27 requests/responses", "regex": "(Send: M27)|(Recv: SD printing byte)" }
 	],
+	"eject": {
+		"enabled": False,
+		"maxBedTemp": 35,
+		"ejectGCode": "M117 Ejecting...\nM40\nM117 Done"
+	},
 	"devel": {
 		"stylesheet": "css",
 		"virtualPrinter": {

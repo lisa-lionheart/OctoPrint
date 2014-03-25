@@ -131,6 +131,12 @@ function SettingsViewModel(loginStateViewModel, usersViewModel) {
     self.system_actions = ko.observableArray([]);
 
     self.terminalFilters = ko.observableArray([]);
+	
+	
+	self.eject_enabled = ko.observable(undefined);
+	self.eject_maxBedTemp = ko.observable(undefined);
+	self.eject_ejectGCode = ko.observable(undefined);
+	
 
     self.addTemperatureProfile = function() {
         self.temperature_profiles.push({name: "New", extruder:0, bed:0});
@@ -244,6 +250,10 @@ function SettingsViewModel(loginStateViewModel, usersViewModel) {
         self.system_actions(response.system.actions);
 
         self.terminalFilters(response.terminalFilters);
+		
+		self.eject_enabled(response.eject.enabled);
+		self.eject_maxBedTemp(response.eject.maxBedTemp);
+		self.eject_ejectGCode(response.eject.ejectGCode);
     }
 
     self.saveData = function() {
@@ -313,7 +323,12 @@ function SettingsViewModel(loginStateViewModel, usersViewModel) {
                 "path": self.cura_path(),
                 "config": self.cura_config()
             },
-            "terminalFilters": self.terminalFilters()
+            "terminalFilters": self.terminalFilters(),
+			"eject": {
+				"enabled": self.eject_enabled(),
+				"maxBedTemp": self.eject_maxBedTemp(),
+				"ejectGCode":self.eject_ejectGCode()
+			}
         };
 
         $.ajax({

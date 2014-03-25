@@ -11,6 +11,7 @@
                 <li><a href="#settings_printerParameters" data-toggle="tab">Printer Parameters</a></li>
                 <li><a href="#settings_temperature" data-toggle="tab">Temperatures</a></li>
                 <li><a href="#settings_terminalFilters" data-toggle="tab">Terminal filters</a></li>
+                <li><a href="#settings_ejectSupport" data-toggle="tab">Eject Support</a></li>
                 <li class="nav-header">Features</li>
                 <li><a href="#settings_features" data-toggle="tab">Features</a></li>
                 <li><a href="#settings_webcam" data-toggle="tab">Webcam</a></li>
@@ -385,6 +386,38 @@
                         </div>
                     </form>
                 </div>
+				
+				<div class="tab-pane" id="settings_ejectSupport">
+					<form class="form-horizontal">
+						<div class="row-fluid">
+							<div class="span3">
+								<label class="checkbox" for="settings-ejectEnabled">Enable</label>
+							</div>
+							<div class="span9">
+								<input type="checkbox" data-bind="checked: eject_enabled" id="settings-ejectEnabled">
+							</div>
+						</div><div class="row-fluid">
+							<div class="span3">
+								<label class="checkbox" for="settings-ejectMaxBedTemp">Maximum Bed Temp</label>
+							</div>
+							 <div class="input-append span3">
+								<input type="number" class="input-mini text-right" data-bind="value: eject_maxBedTemp, enable: eject_enabled">
+								<span class="add-on">&deg;C</span>
+							</div>
+						</div>
+						<div class="row-fluid">
+							<div class="span3">
+								<label class="checkbox" for="settings-ejectGCode">Device GCode</label>
+							</div>
+							<div class="span9">
+								<i>Device specific GCode to perform the ejection sequence</i>
+								<textarea id="settings-ejectGCode" data-bind="value: eject_ejectGCode, enable: eject_enabled" style="width:450px; height:100px;" ></textarea>
+							</div>
+						</div>
+						
+					</form>
+				</div>
+				
                 <div class="tab-pane" id="settings_appearance">
                     <form class="form-horizontal">
                         <div class="control-group">

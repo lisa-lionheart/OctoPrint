@@ -64,7 +64,8 @@ def index():
 		gitCommit=commit,
 		stylesheet=settings().get(["devel", "stylesheet"]),
 		gcodeMobileThreshold=settings().get(["gcodeViewer", "mobileSizeThreshold"]),
-		gcodeThreshold=settings().get(["gcodeViewer", "sizeThreshold"])
+		gcodeThreshold=settings().get(["gcodeViewer", "sizeThreshold"]),
+		enableEjectCommand=settings().get(["eject","enabled"])
 	)
 
 
